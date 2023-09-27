@@ -14,6 +14,37 @@
   </head>
 
   <body>
+
+  <!-- app/views/shared/_navbar.html.erb -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <%= link_to 'Team Rails!', root_path, class: 'navbar-brand' %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to 'Home', root_path, class: 'nav-link active', aria: { current: 'page' } %>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Login
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Student Login', s_path, class: 'dropdown-item' %></li>
+              <li><%= link_to 'Teacher Login', teacher_path, class: 'dropdown-item' %></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><%= link_to 'Create Account', create_path , class: 'dropdown-item' %></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+
   <div class="container">
     <%= yield %>
   </div>

@@ -1,0 +1,15 @@
+<h2 class="ms-1 mt-4"> Enter student login credentials </h2>
+
+<%= form_with url: s_path do |form| %>
+  <div class="mb-3">
+    <label> Email </label>
+    <%= form.text_field :username, class: 'form-control', placeholder: 'example@gmail.com'%>
+  </div>
+
+  <div class="mb-3">
+    <label> Password </label>
+    <%= form.password_field :password, class: 'form-control', placeholder: 'password123'%>
+  </div>
+
+  <%= form.submit "Sign in!", class: "btn btn-primary" %>
+<% end %>
