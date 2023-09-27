@@ -3,6 +3,7 @@ lock "~> 3.17.3"
 
 set :application, "production_demo"
 set :repo_url, "git@github.com:leocarten/production_demo.git"
+set :branch, 'main'
 
 set :deploy_to, "/home/deploy/#{fetch :application}"
 
