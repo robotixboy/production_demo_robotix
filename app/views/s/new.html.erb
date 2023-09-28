@@ -2,13 +2,13 @@
 
 <%= form_with url: s_path do |form| %>
   <div class="mb-3">
-    <label> Email </label>
-    <%= form.text_field :username, class: 'form-control', placeholder: 'example@gmail.com'%>
+    <label> Email Address</label>
+    <%= form.text_field :username, class: 'form-control', placeholder: 'Enter email'%>
   </div>
 
   <div class="mb-3">
     <label> Password </label>
-    <%= form.password_field :password, class: 'form-control', placeholder: 'password123'%>
+    <%= form.password_field :password, class: 'form-control', placeholder: 'Password'%>
   </div>
 
   <%= form.submit "Sign in!", class: "btn btn-primary" %>
