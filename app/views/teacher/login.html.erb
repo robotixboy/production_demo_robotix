@@ -1,0 +1,16 @@
+<h2 class="ms-1 mt-4"> Enter login credentials </h2>
+<%= form_for @teacher, url: check_credentials_teachers_path, method: :post do |f| -%>
+    <div class="mb-3">
+        <label> Email </label>
+        <%= f.text_field :username, class: 'form-control', placeholder: 'example@gmail.com'%>
+    </div>
+
+    <div class="mb-3">
+        <label> Password </label>
+        <%= f.password_field :password, class: 'form-control', placeholder: 'password123'%>
+    </div>
+
+
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+    <%= link_to 'Cancel', root_path,  class: "btn btn-danger"%>
+<% end -%>
