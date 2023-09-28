@@ -13,11 +13,11 @@ Requires rails >= 7.0.8
 
 * Instructions
 
-Download repository.
+1. Download repository.
 
-Run `rails server` in the directory of the project.
+2. Run `rails server` in the directory of the project.
 
-View on `localhost:3000`.
+3. View on `localhost:3000`.
 
 * Database creation
 
