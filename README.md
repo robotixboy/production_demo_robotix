@@ -10,9 +10,9 @@ Requires ruby version 3.2.2
 Requires rails >= 7.0.8
 
 * Instructions
-1. Download repository.
-2. Run `rails server` in the directory of the project.
-3. View on `localhost:3000`.
+Download repository.
+Run `rails server` in the directory of the project.
+View on `localhost:3000`.
 
 * Database creation
 
