@@ -1,0 +1,46 @@
+<%= link_to 'Log Out', teacher_login_url,  class: "btn btn-danger"%>
+<h2 class="ms-1 mt-4"> Enter Question </h2>
+<%= form_for @question do |f| -%>
+    <div class="mb-3">
+        <label> Question </label>
+        <%= f.text_field :QuestionText, class: 'form-control'%>
+    </div>
+
+    <div class="mb-3">
+        <label> The Actual Answer </label>
+        <%= f.text_field :QuestionAnswer, class: 'form-control'%>
+    </div>
+
+
+    <%= f.submit "Submit!", class: "btn btn-primary" %>
+<% end -%>
+<br/>
+<h2 class="ms-1">Display all Questions:</h2>
+<% if !@questions.blank? %>
+  <% questionNumber = 1%>
+  <ul>
+    <% @questions.each do |question| %>
+      <li>
+        <h6 class="ms-1">
+          Question: <%= questionNumber %> | 
+          Question Text: <%= question.QuestionText %> | 
+          Question Answer: <%= question.QuestionAnswer %>
+        </h6>
+        
+        <%= link_to "Delete", question, method: :delete, data: { confirm: "Are you sure you want to delete this question?" }, class: "btn btn-danger" %>
+        <%questionNumber+=1%>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h6 class="ms-1">No data found in the table</h6>
+<% end %>
+
+<h2 class="ms-1 mt-4">Display all Answers:</h2>
+<% if !@answers.blank? %>
+  <% @answers.each do |answer| %>
+    <h6 class="ms-1">Student: <%= answer.student.username %> | Question: <%= answer.question.QuestionText %> | Response: <%= answer.response %> </h6>
+  <% end %>
+<% else %>
+  <h6 class="ms-1">No answers found.</h6>
+<% end %>
