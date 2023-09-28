@@ -29,9 +29,9 @@ class TeacherController < ApplicationController
     #Teacher/index.html.erb
     def index 
         @teachers = Teacher.all #get all teachers
-        #@question = Question.new
-        #@questions = Question.all
-        #@answers = Answer.all
+        @question = Question.new
+        @questions = Question.all
+        @answers = Answer.all
     end
 
     #Never used buy made to create a teacher login

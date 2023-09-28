@@ -1,0 +1,27 @@
+<h2 class="ms-1"> <%= link_to 'Log Out', student_login_url, class: "btn btn-danger" %></h2>
+
+<% if !@questions.blank? %>
+  <%= form_with(model: @answer, url: answers_path, method: :post) do |form| %>
+    <h2 class="ms-1 mt-4">Enter answers for questions:</h2>
+    
+    <% @questions.each do |question| %>
+      <%= fields_for "answers[]", Answer.new do |answer_fields| %>
+        <%= answer_fields.hidden_field :student_id, value: session[:user_id] %>
+        <%= answer_fields.hidden_field :question_id, value: question.id %>
+        
+        <div class="mb-3">
+          <h6 class="ms-1">Question: <%= question.id %> | <%= question.QuestionText %></h6>
+          <label>Answer to the question</label>
+          <%= answer_fields.text_field :response, class: 'form-control', placeholder: 'Enter answer' %>
+        </div>
+      <% end %>
+    <% end %>
+      
+  <% end %>
+  <%= form.submit "Submit All Answers", class: "btn btn-primary" %>
+<% end %>
+
+
+
+
+
