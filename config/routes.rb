@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :answers
   get 'teacher/index', to: 'teacher#index', as: 'teacher_index'
   get 'teacher/login', to: 'teacher#login', as: 'teacher_login'
+  get 'student/login', to: 'students#login', as: 'student_login'
+  get 'student/index', to: 'students#index', as: 'student_index'
   #get 'teachers/index'
   root 'pages#home'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -22,6 +24,9 @@ Rails.application.routes.draw do
 
   ##These are used for checking the database for log in credentials
   resources :teachers do
+    post 'check_credentials', on: :collection
+  end
+  resources :students do
     post 'check_credentials', on: :collection
   end
 end
