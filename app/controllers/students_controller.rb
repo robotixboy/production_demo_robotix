@@ -11,16 +11,15 @@ class StudentsController < ApplicationController
     end
 
     def index
+        if session[:user_id].nil?
+            redirect_to root_url
+        end
         @student = Student.new #create new studnet
         @students = Student.all #get all students
         @question = Question.new
         @questions = Question.all
         @answer = Answer.new
         @answers = Answer.all
-    end
-
-    def logout
-        session[:user_id] = nil
     end
 
     def check_credentials
@@ -40,6 +39,7 @@ class StudentsController < ApplicationController
     end
 
     def login
+        session[:user_id] = nil
         @student = Student.new #create new studnet
         @students = Student.all
     end
