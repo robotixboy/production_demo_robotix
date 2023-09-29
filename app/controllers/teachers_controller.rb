@@ -39,7 +39,7 @@ class TeachersController < ApplicationController
     def create
         @teacher = Teacher.new(teacher_params)
         if @teacher.save #save into sql
-            redirect_to :back
+            render :login
         end
     end
 
