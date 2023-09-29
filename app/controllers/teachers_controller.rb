@@ -1,4 +1,4 @@
-class TeacherController < ApplicationController
+class TeachersController < ApplicationController
     def new 
         @teacher = Teacher.new #create new teacher
         @teachers = Teacher.all #get all teachers
@@ -7,6 +7,7 @@ class TeacherController < ApplicationController
     #Teacher/login.html.erb 
     def login
         @teacher = Teacher.new #Most likey not nessesary :I
+        @teachers = Teacher.all
     end
 
     #Function in Teacher/login.html.erb [Takes in a user/pass and compares in the database it exists]
@@ -19,9 +20,9 @@ class TeacherController < ApplicationController
       
         if teacher && teacher.password == password
           session[:user_id] = teacher.id
-          redirect_to teacher_index_path, notice: "Welcome back, #{teacher.username}!" #Goes to Teacher/index.html.erb
+          redirect_to teacher_index_path, notice: "Welcome back, #{teacher.username}!"
         else
-          flash.now[:alert] = "Invalid login credentials." #Stays on login page and notifies user login failed
+          flash.now[:alert] = "Invalid login credentials."
           render :login
         end
     end
@@ -47,4 +48,3 @@ class TeacherController < ApplicationController
         params.require(:teacher).permit(:username, :password)
     end
 end
-

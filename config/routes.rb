@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :teachers
   resources :questions
   resources :answers
-  get 'teacher/index', to: 'teacher#index', as: 'teacher_index'
-  get 'teacher/login', to: 'teacher#login', as: 'teacher_login'
+  get 'teacher/index', to: 'teachers#index', as: 'teacher_index'
+  get 'teacher/login', to: 'teachers#login', as: 'teacher_login'
   get 'student/login', to: 'students#login', as: 'student_login'
   get 'student/index', to: 'students#index', as: 'student_index'
   #get 'teachers/index'
