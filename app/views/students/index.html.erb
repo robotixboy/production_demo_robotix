@@ -15,14 +15,18 @@
         <%= answer_fields.hidden_field :student_id, value: session[:user_id] %>
         <%= answer_fields.hidden_field :question_id, value: question.id %>
         
-        <div class="mb-3">
-          <h6 class="ms-1">Question: <%= question.id %> | <%= question.QuestionText %></h6>
-          <label>Answer to the question</label>
+        <div class="mb-4">
+          <h6 class="ms-1">Question <%= question.id %>: <%= question.QuestionText %></h6>
+          <label class="ms-1">Answer to the question</label>
+          <div class="ms-1">
           <%= answer_fields.text_field :response, class: 'form-control', placeholder: 'Enter answer' %>
+          </div>
         </div>
       <% end %>
     <% end %>
+    <div class="ms-1">
     <%= form.submit "Submit All Answers", class: "btn btn-primary" %>
+    </div>
   <% end %>
 
 <% else %>
@@ -31,6 +35,10 @@
   </div>
 <% end %>
 
+<div class="ms-1">
 <div class="mt-4">
+<div class="mb-4">
 <%= link_to 'Log Out', root_path,  class: "btn btn-danger"%>
+</div>
+</div>
 </div>
