@@ -6,6 +6,7 @@ class TeachersController < ApplicationController
 
     #Teacher/login.html.erb 
     def login
+        session[:user_id] = nil
         @teacher = Teacher.new #Most likey not nessesary :I
         @teachers = Teacher.all
     end
@@ -29,6 +30,9 @@ class TeachersController < ApplicationController
 
     #Teacher/index.html.erb
     def index 
+        if session[:user_id].nil?
+            redirect_to root_url
+        end
         @teachers = Teacher.all #get all teachers
         @question = Question.new
         @questions = Question.all
