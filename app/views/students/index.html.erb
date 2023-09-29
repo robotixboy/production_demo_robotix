@@ -1,4 +1,10 @@
-<h2 class="ms-1"> <%= link_to 'Log Out', student_login_url, class: "btn btn-danger" %></h2>
+<% if flash[:notice] %>
+<div class="mt-5">
+  <div class="alert alert-success"><%= flash[:notice] %>
+  </div>
+</div>
+<% end %>
+
 
 <% if !@questions.blank? %>
   <%= form_with(model: @answer, url: answers_path, method: :post) do |form| %>
@@ -18,9 +24,14 @@
     <% end %>
     <%= form.submit "Submit All Answers", class: "btn btn-primary" %>
   <% end %>
+
+
+<% else %>
+  <div class="mt-4">
+        <h4>Your teacher currently has no assigned questions to answer.</h4>
+  </div>
 <% end %>
 
-
-
-
-
+<div class="mt-4">
+<h2 class="ms-0"> <%= link_to 'Log Out', student_login_url, class: "btn btn-danger" %></h2>
+</div>
