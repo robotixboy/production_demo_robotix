@@ -7,10 +7,13 @@
 
 
 <% if !@questions.blank? %>
+  <%availableQuestions = 0%>
   <%= form_with(model: @answer, url: answers_path, method: :post) do |form| %>
-    <h2 class="ms-1 mt-4">Enter answers for questions:</h2>
+    <h2 class="ms-1 mt-4">Answer questions if available:</h2>
     
     <% @questions.each do |question| %>
+      <%next if !Answer.find_by(student_id: session[:user_id], question_id: question.id).blank? %>
+      <%availableQuestions += 1%>
       <%= fields_for "answers[]", Answer.new do |answer_fields| %>
         <%= answer_fields.hidden_field :student_id, value: session[:user_id] %>
         <%= answer_fields.hidden_field :question_id, value: question.id %>
@@ -24,9 +27,13 @@
         </div>
       <% end %>
     <% end %>
-    <div class="ms-1">
-    <%= form.submit "Submit All Answers", class: "btn btn-primary" %>
-    </div>
+    <% if availableQuestions > 0%>
+      <div class="ms-1">
+        <%= form.submit "Submit All Answers", class: "btn btn-primary" %>
+      </div>
+    <% else %>
+      <h4>Your teacher currently hasnt add any more assigned questions to answer.</h4>
+    <% end %>
   <% end %>
 
 <% else %>
@@ -39,6 +46,7 @@
 <div class="mt-4">
 <div class="mb-4">
 <%= link_to 'Log Out', root_path,  class: "btn btn-danger"%>
+<%= link_to 'Grade', student_grade_path,  class: "btn btn-primary"%>
 </div>
 </div>
 </div>

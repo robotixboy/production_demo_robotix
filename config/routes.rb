@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'teacher/index', to: 'teachers#index', as: 'teacher_index'
   get 'teacher/login', to: 'teachers#login', as: 'teacher_login'
   get 'student/login', to: 'students#login', as: 'student_login'
+  get 'student/grade', to: 'students#grade', as: 'student_grade'
   get 'student/index', to: 'students#index', as: 'student_index'
   #get 'teachers/index'
   root 'pages#home'
