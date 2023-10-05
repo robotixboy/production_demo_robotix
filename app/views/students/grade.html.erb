@@ -1,0 +1,16 @@
+<h2 class="ms-1 mt-4">All questions answered:</h2>
+<% if !@answers.blank? %>
+  <% total = Float(0)%>
+  <% @answers.each do |answer| %>
+    <% if answer.student.id == session[:user_id]%>
+        <% if answer.question.QuestionAnswer == answer.response%>
+            <% total += 1%>
+        <% end %>
+        <h6 class="ms-1">Question: <%= answer.question.QuestionText %> | Response: <%= answer.response %> | Actual Answer: <%= answer.question.QuestionAnswer %> </h6>
+    <% end %>
+<% end %>
+<h1> Grade : <%=((total/@questionCount)*100).round(2)%>% </h1>
+<% else %>
+  <h6 class="ms-1">No answers found.</h6>
+<% end %>
+<%= link_to 'Log Out', root_path,  class: "btn btn-danger"%>

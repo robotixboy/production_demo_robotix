@@ -22,6 +22,16 @@ class StudentsController < ApplicationController
         @answers = Answer.all
     end
 
+    def grade
+        if session[:user_id].nil?
+            redirect_to root_url
+        end
+        @students = Student.all
+        @questions = Question.all
+        @answers = Answer.all
+        @questionCount = Question.all.length
+    end
+
     def check_credentials
         username = params[:student][:username]
         password = params[:student][:password]

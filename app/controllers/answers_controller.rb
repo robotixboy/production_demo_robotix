@@ -20,7 +20,7 @@ class AnswersController < ApplicationController
         end
         #notifi user answers have been sumbitted
         flash[:notice] = "All answers were successfully submitted."
-        redirect_to root_path
+        redirect_to student_grade_path
       else
         flash[:alert] = "No answers were submitted."
         render 'student/index'
