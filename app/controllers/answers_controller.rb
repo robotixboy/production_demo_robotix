@@ -6,19 +6,22 @@ class AnswersController < ApplicationController
   
     def create
       answers_params = params[:answers]
-      ##Checks to see if there are any questions answered at all
+    
       if answers_params.present?
-        answers_params.each do |answer_params| #Will loop through each answer and create a new answer from it
-          @answer = Answer.new(answer_params.permit(:response, :student_id, :question_id))
-  
-          #If the answer is not saved it will output error
+        answers_params.each do |question_id, answer_param|
+          # Ensure that the answer_param is an ActionController::Parameters object
+          answer_param = answer_param.permit(:response, :student_id, :question_id)
+    
+          # Create a new Answer record for each answer_param
+          @answer = Answer.new(answer_param)
+    
           if !@answer.save
             flash[:error] = @answer.errors.full_messages.join(", ")
             render 'student/index'
             return
           end
         end
-        #notifi user answers have been sumbitted
+    
         flash[:notice] = "All answers were successfully submitted."
         redirect_to student_grade_path
       else
@@ -26,6 +29,7 @@ class AnswersController < ApplicationController
         render 'student/index'
       end
     end
+    
   
     def create_answer
       @answer = Answer.new(answer_params)
