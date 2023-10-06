@@ -1,4 +1,9 @@
-<h2 class="ms-1 mt-4">All questions answered:</h2>
+<div class="mb-3">
+<h2 class="ms-1 mt-4">A quick review</h2>
+<div class="text-success">
+<hr class="border border-dark border-1 opacity-50">
+</div>
+</div>
 <% if !@answers.blank? %>
   <% total = Float(0)%>
   <% @answers.each do |answer| %>
@@ -6,11 +11,27 @@
         <% if answer.question.QuestionAnswer == answer.response%>
             <% total += 1%>
         <% end %>
-        <h6 class="ms-1">Question: <%= answer.question.QuestionText %> | Response: <%= answer.response %> | Actual Answer: <%= answer.question.QuestionAnswer %> </h6>
-    <% end %>
+        <h6 class="ms-1"><span style="font-weight:bold;">Question asked: </span><%= answer.question.QuestionText %></h6>
+        <h6 class="ms-1"><span style="font-weight:bold;">Your response: </span><%= answer.response %> </h6>
+        <h6 class="ms-1"><span style="font-weight:bold;">Actual Answer:</span> <%= answer.question.QuestionAnswer %> </h6>
+        <div class="text-success">
+        <hr class="border border-dark border-1 opacity-50">
+        </div>
+        <% end %>
 <% end %>
-<h1> Grade : <%=((total/@questionCount)*100).round(2)%>% </h1>
+<h2 class="ms-1"> Grade: <%=((total/@questionCount)*100).round(2)%>% </h2>
+
+<% if ((total / @questionCount) * 100).round(2) > 79 %>
+  <h6 class="ms-1">Good job, you're a genius! &#x2705;</h6>
+<% elsif ((total / @questionCount) * 100).round(2) > 50 %>
+  <p>Not bad, keep up the good work! &#128170</p>
+<% else %>
+  <h6 class="ms-1">Don't get down on yourself, better luck next time! &#129504</h6>
+<% end %>
+
 <% else %>
   <h6 class="ms-1">No answers found.</h6>
 <% end %>
+<div class="mt-4">
 <%= link_to 'Log Out', root_path,  class: "btn btn-danger"%>
+</div>

@@ -9,8 +9,8 @@
 <% if !@questions.blank? %>
   <%availableQuestions = 0%>
   <%= form_with(model: @answer, url: answers_path, method: :post) do |form| %>
-    <h2 class="ms-1 mt-4">Answer questions if available:</h2>
-    
+    <h3 class="ms-1 mt-4 mb-4">Answer all questions to the best of your ability.</h3>
+
     <% @questions.each do |question| %>
       <%next if !Answer.find_by(student_id: session[:user_id], question_id: question.id).blank? %>
       <%availableQuestions += 1%>
@@ -19,26 +19,27 @@
         <%= answer_fields.hidden_field :question_id, value: question.id %>
         
         <div class="mb-4">
-          <h6 class="ms-1">Question <%= question.id %>: <%= question.QuestionText %></h6>
-          <label class="ms-1">Answer to the question</label>
+          <h6 class="ms-1"><span style="font-weight:bold;">Question <%= question.id %></span>: <%= question.QuestionText %></h6>
           <div class="ms-1">
-          <%= answer_fields.text_field :response, class: 'form-control', placeholder: 'Enter answer' %>
+          <%= answer_fields.text_field :response, class: 'form-control', placeholder: 'Enter response' %>
           </div>
         </div>
       <% end %>
     <% end %>
     <% if availableQuestions > 0%>
       <div class="ms-1">
-        <%= form.submit "Submit All Answers", class: "btn btn-primary" %>
+
+        <%= form.submit "Submit to be graded", class: "btn btn-success" %>
+
       </div>
     <% else %>
-      <h4>Your teacher currently hasnt add any more assigned questions to answer.</h4>
+      <h4>Your teacher currently hasn't added any more questions for you to answer.</h4>
     <% end %>
   <% end %>
 
 <% else %>
   <div class="mt-4">
-        <h4>Your teacher currently has no assigned questions to answer.</h4>
+        <h4>Your teacher currently has no assigned questions to answer because you are all caught up to date!</h4>
   </div>
 <% end %>
 
@@ -46,7 +47,6 @@
 <div class="mt-4">
 <div class="mb-4">
 <%= link_to 'Log Out', root_path,  class: "btn btn-danger"%>
-<%= link_to 'Grade', student_grade_path,  class: "btn btn-primary"%>
 </div>
 </div>
 </div>

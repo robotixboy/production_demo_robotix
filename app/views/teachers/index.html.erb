@@ -14,7 +14,7 @@
     <%= f.submit "Create Question", class: "btn btn-primary" %>
 <% end -%>
 <br/>
-<h2 class="ms-1">Display all Questions:</h2>
+<h2 class="ms-1">Display all Questions in current Quiz:</h2>
 <% if !@questions.blank? %>
   <% questionNumber = 1%>
   <ul>
@@ -35,10 +35,11 @@
   <h6 class="ms-1">No data found in the table</h6>
 <% end %>
 
-<h2 class="ms-1 mt-4">Display all Answers:</h2>
+<h2 class="ms-1 mt-4">People who have taken your exam:</h2>
 <% if !@answers.blank? %>
   <% @answers.each do |answer| %>
     <h6 class="ms-1">Student: <%= answer.student.username %> | Question: <%= answer.question.QuestionText %> | Response: <%= answer.response %> </h6>
+    
   <% end %>
 <% else %>
   <h6 class="ms-1">No answers found.</h6>
