@@ -2,12 +2,12 @@
 <%= form_for @student, url: check_credentials_students_path, method: :post do |f| -%>
     <div class="mb-3">
         <label> Email </label>
-        <%= f.text_field :username, class: 'form-control', placeholder: 'example@gmail.com'%>
+        <%= f.text_field :username, class: 'form-control', placeholder: 'example@gmail.com', required: true%>
     </div>
 
     <div class="mb-3">
         <label> Password </label>
-        <%= f.password_field :password, class: 'form-control', placeholder: 'password123'%>
+        <%= f.password_field :password, class: 'form-control', placeholder: 'password123', required: true%>
     </div>
 
 
