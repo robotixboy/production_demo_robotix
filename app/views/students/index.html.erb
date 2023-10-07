@@ -20,11 +20,11 @@
         <div class="ms-1">
           <% if question.QuestionAnswer == "True" || question.QuestionAnswer == "False" %>
             <label>
-              <%= answer_fields.radio_button :response, true, name: "answers[#{question.id}][response]" %>
+              <%= answer_fields.radio_button :response, 'True', name: "answers[#{question.id}][response]" %>
               True
             </label>
             <label>
-              <%= answer_fields.radio_button :response, false, name: "answers[#{question.id}][response]" %>
+              <%= answer_fields.radio_button :response, 'False', name: "answers[#{question.id}][response]" %>
               False
             </label>
           <% else %>
