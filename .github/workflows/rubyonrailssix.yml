@@ -27,4 +27,13 @@ jobs:
       # Add or replace test runners here
       - name: Run tests
         run: bin/rake
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deplooooy
+        run: config/deploy/production.rb
+        
+    
         
